@@ -1,5 +1,6 @@
 package com.imh.spring.basics.springin10steps;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
