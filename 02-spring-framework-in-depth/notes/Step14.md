@@ -91,3 +91,117 @@ In the Gang of Four design patterns, whenever they say singleton, it basically m
 By Gang of Four definition, even if multiple application contexts are running in the same JVM, you should just have one instance of that specific class. However, when we talk about Spring singleton, there can be one instance of that class per one application context. So if there are five application contexts, that are running in the same JVM, then if I have Spring beans of scope singleton then I'll have five instances. However if you are having a singleton which meets the definition of Gang of Four design pattern singleton, there will only be one instance of it.
 
 You need to keep this difference in mind, and when we talk about application context, bean factory, and IOC.
+
+## Complete Code Example
+
+##### /src/main/java/com/imh/spring/basics/springindepth/Application.java
+
+```java
+package com.imh.spring.basics.springindepth;
+
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+
+import com.imh.spring.basics.springindepth.basics.BinarySearchImpl;
+
+@SpringBootApplication
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+public class Application {
+	
+	public static void main(String[] args) {
+		
+		//Spring Application Context
+		ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
+		BinarySearchImpl binarySearch = applicationContext.getBean(BinarySearchImpl.class);
+		BinarySearchImpl binarySearch1 = applicationContext.getBean(BinarySearchImpl.class);
+		System.out.println(binarySearch);
+		System.out.println(binarySearch1);
+
+		int result = binarySearch.binarySearch(new int[] {12,4,6}, 3);
+		System.out.println(result);
+	}
+}
+```
+---
+
+##### /src/main/java/com/imh/spring/basics/springindepth/basics/BinarySearchImpl.java
+
+```java
+package com.imh.spring.basics.springindepth.basics;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class BinarySearchImpl {
+
+	@Autowired
+	private SortAlgorithm sortAlgorithm;
+	
+	public int binarySearch (int[] numbers, int numberTo) {
+		int[] sortedNumbers = sortAlgorithm.sort(numbers);
+		System.out.println(sortAlgorithm);
+		//Search the array
+		
+		return 3;
+	}
+}
+```
+---
+
+##### /src/main/java/com/imh/spring/basics/springindepth/basics/SortAlgorithm.java
+
+```java
+package com.imh.spring.basics.springindepth.basics;
+
+public interface SortAlgorithm {
+	public int[] sort(int [] numbers);
+}	
+```
+---
+
+##### /src/main/java/com/imh/spring/basics/springindepth/basics/BubbleSortAlgorithm.java
+
+```java
+package com.imh.spring.basics.springindepth.basics;
+
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+@Component
+@Primary
+public class BubbleSortAlgorithm implements SortAlgorithm{
+
+	public int[] sort(int[] numbers) {
+		//Logic for Bubble sort.
+		return numbers;
+	}
+}
+```
+---
+
+##### /src/main/java/com/imh/spring/basics/springindepth/basics/QuickSortAlgorithm.java
+
+```java
+package com.imh.spring.basics.springindepth.basics;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class QuickSortAlgorithm implements SortAlgorithm {
+	
+	public int[] sort(int[] numbers) {
+		//Logic for Quick Sort
+		return numbers;
+	}	
+}	
+```

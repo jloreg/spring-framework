@@ -1,4 +1,4 @@
-package com.imh.spring.basics.springindepth;
+package com.imh.spring.basics.springindepth.basics;
 
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.imh.spring.basics.springindepth;
+package com.imh.spring.basics.springindepth.basics;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -9,16 +9,16 @@ import org.springframework.stereotype.Component;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class BinarySearchImpl {
 
-	@Autowired
+	@Autowired	//Setter injection (through reflection). Employ this.
 	private SortAlgorithm sortAlgorithm;
 
-//	@Autowired
+//	@Autowired	//Constructor injection
 //	public BinarySearchImpl (SortAlgorithm sortAlgorithm) {
 //		super();
 //		this.sortAlgorithm = sortAlgorithm;
 //	}
 
-//	@Autowired
+//	@Autowired	//Setter injection
 //	public void setSortAlgorithm (SortAlgorithm sortAlgorithm) {
 //		this.sortAlgorithm = sortAlgorithm;
 //	}

@@ -9,6 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+import com.imh.spring.basics.springindepth.basics.BinarySearchImpl;
+
 @SpringBootApplication
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class Application {
