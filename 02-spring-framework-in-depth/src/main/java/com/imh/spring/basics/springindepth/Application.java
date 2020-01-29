@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Scope;
 import com.imh.spring.basics.springindepth.basics.BinarySearchImpl;
 
 @SpringBootApplication
-@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+//@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)	//by default
 public class Application {
 	
 	public static void main(String[] args) {
