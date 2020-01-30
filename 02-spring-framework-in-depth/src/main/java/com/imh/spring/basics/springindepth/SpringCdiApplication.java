@@ -16,6 +16,7 @@ public class SpringCdiApplication {
 	private static Logger LOGGER = LoggerFactory.getLogger(SpringCdiApplication.class);
 
 	public static void main(String[] args) {
+		
 		try (AnnotationConfigApplicationContext applicationContext = 
 				new AnnotationConfigApplicationContext(SpringCdiApplication.class)) {
 			

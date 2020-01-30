@@ -19,16 +19,18 @@ public class SpringScopeApplication {
 
 	public static void main(String[] args) {
 
-		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringScopeApplication.class);
+		try (AnnotationConfigApplicationContext applicationContext = 
+				new AnnotationConfigApplicationContext(SpringScopeApplication.class)) {
+		
+			//Create two instances of PersonDAO
+			PersonDAO personDao = applicationContext.getBean(PersonDAO.class);
+			PersonDAO personDao2 = applicationContext.getBean(PersonDAO.class);
 
-		//Create two instances of PersonDAO
-		PersonDAO personDao = applicationContext.getBean(PersonDAO.class);
-		PersonDAO personDao2 = applicationContext.getBean(PersonDAO.class);
-
-		//"{}": this would replace whatever is in within the second argument (personDao, personDao.getJdbcConnection(), etc) 
-		LOGGER.info("{}", personDao);
-		LOGGER.info("{}", personDao.getJdbcConnection());	//Print Jdbc connection
-		LOGGER.info("{}", personDao2);
-		LOGGER.info("{}", personDao2.getJdbcConnection());
+			//"{}": this would replace whatever is in within the second argument (personDao, personDao.getJdbcConnection(), etc) 
+			LOGGER.info("{}", personDao);
+			LOGGER.info("{}", personDao.getJdbcConnection());	//Print Jdbc connection
+			LOGGER.info("{}", personDao2);
+			LOGGER.info("{}", personDao2.getJdbcConnection());
+		}
 	}
 }
