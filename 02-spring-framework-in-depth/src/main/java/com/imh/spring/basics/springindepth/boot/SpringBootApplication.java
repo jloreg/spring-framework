@@ -1,19 +1,18 @@
-package com.imh.spring.basics.springindepth;
+package com.imh.spring.basics.springindepth.boot;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import com.imh.spring.basics.springindepth.SpringApplication;
 import com.imh.spring.basics.springindepth.basics.BinarySearchImpl;
 
 @SpringBootApplication
 //@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)	//by default
-public class Application {
+public class SpringBootApplication {
 	
 	public static void main(String[] args) {
 		
 		//Spring Application Context
-		ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
+		ApplicationContext applicationContext = SpringApplication.run(SpringBootApplication.class, args);
 		BinarySearchImpl binarySearch = applicationContext.getBean(BinarySearchImpl.class);
 		BinarySearchImpl binarySearch1 = applicationContext.getBean(BinarySearchImpl.class);
 		System.out.println(binarySearch);

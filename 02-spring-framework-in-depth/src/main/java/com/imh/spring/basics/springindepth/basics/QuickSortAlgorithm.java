@@ -2,6 +2,7 @@ package com.imh.spring.basics.springindepth.basics;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @Component
 @Qualifier("quick")

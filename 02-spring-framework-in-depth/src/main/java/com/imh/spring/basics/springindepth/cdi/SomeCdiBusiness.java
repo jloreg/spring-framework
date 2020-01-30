@@ -2,7 +2,6 @@ package com.imh.spring.basics.springindepth.cdi;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Qualifier;
 import javax.inject.Singleton;
 
 @Named		//Instead of @Component it's called @Named

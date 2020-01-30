@@ -2,22 +2,24 @@ package com.imh.spring.basics.springindepth;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import com.imh.spring.basics.springindepth.scope.PersonDAO;
 
-@SpringBootApplication
-//@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)	//By default
-public class ScopeApplication {
+@Configuration
+@ComponentScan		//by default it's equivalent to @ComponentScan ("com.imh.spring.basics.springindepth")
+//@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)	//by default
+public class SpringScopeApplication {
 
 	//Logging with SLF4J Logger; because it's static, I would need to rename 'logger' to LOGGER 
 	private static Logger LOGGER = 
-			LoggerFactory.getLogger(ScopeApplication.class);
+			LoggerFactory.getLogger(SpringScopeApplication.class);
 
 	public static void main(String[] args) {
 
-		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScopeApplication.class);
+		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringScopeApplication.class);
 
 		//Create two instances of PersonDAO
 		PersonDAO personDao = applicationContext.getBean(PersonDAO.class);
