@@ -4,11 +4,11 @@ public class XmlPersonDAO {						//Data Access Object, that's your Data layer.
 
 	XmlJdbcConnection jdbcConnection;
 
-	public XmlJdbcConnection getJdbcConnection() {
+	public XmlJdbcConnection getXmlJdbcConnection() {
 		return jdbcConnection;
 	}
 
-	public void setJdbcConnection(XmlJdbcConnection jdbcConnection) {
+	public void setXmlJdbcConnection(XmlJdbcConnection jdbcConnection) {
 		this.jdbcConnection = jdbcConnection;
 	}
 }
