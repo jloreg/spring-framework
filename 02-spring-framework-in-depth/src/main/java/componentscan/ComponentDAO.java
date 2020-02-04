@@ -3,7 +3,7 @@ package componentscan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository		//@Component before
 public class ComponentDAO {
 
 	@Autowired

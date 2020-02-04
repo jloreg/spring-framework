@@ -10,9 +10,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-@Component
+@Service	//@Component before
 //@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)	//by default
 public class BinarySearchImpl {
 

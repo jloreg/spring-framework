@@ -2,9 +2,10 @@ package com.imh.spring.basics.springindepth.basics;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-@Component
+@Service	//@Component before
 @Qualifier("bubble")
 public class BubbleSortAlgorithm implements SortAlgorithm{
 
