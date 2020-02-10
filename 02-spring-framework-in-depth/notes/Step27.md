@@ -1,3 +1,22 @@
+## Step 27 - Spring Unit Testing with a Java Context
+
+With the @ContextConfiguration annotation, we must define the main application class (classes=SpringApplication.class), that contains the @Configuration and @ComponentScan annotations that says to Spring, what is the class that contains the Java configuration context, and the base package to scan for beans and dependencies.
+
+```java
+package com.imh.spring.basics.springindepth.basics;
+//Load the Spring context
+//Runner launch the configuration app SpringApplication.class; SpringRunner.class is part of the spring-test module.
+@RunWith(SpringRunner.class)	
+//Here we are using classes to specifying the Java configuration file for the the context; classes that are in package com.imh.spring.basics.springindepth contains Java Context annotations.
+@ContextConfiguration(classes=SpringApplication.class)
+public class BinarySearchImplTest {
+```
+
+## Complete Code Example
+
+##### pom.xml
+
+```java
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -58,7 +77,7 @@
 			<scope>test</scope>
 		</dependency>
 
-<!-- we added the slf4j-api, and now we add a implementation for it -->		
+<!-- we added the slf4j-api, and now we add a implementation for it -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
@@ -100,3 +119,43 @@
 		</plugins>
 	</build>
 </project>
+```
+
+---
+
+##### /src/test/java/com/imh/spring/basics/springindepth/basics/BinarySearchImplTest.java
+
+```java
+package com.imh.spring.basics.springindepth.basics;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.imh.spring.basics.springindepth.SpringApplication;
+
+//Load the Spring context
+//Runner launch the configuration app SpringApplication.class; SpringRunner.class is part of the spring-test module.
+@RunWith(SpringRunner.class)	
+//Here we are using classes to specifying the Java configuration file for the the context; classes that are in package com.imh.spring.basics.springindepth contains Java Context annotations.
+@ContextConfiguration(classes=SpringApplication.class)
+public class BinarySearchImplTest {
+
+	//Get this bean from the context (using autowiring).
+	@Autowired
+	BinarySearchImpl binarySearch;
+	
+	@Test
+	public void testBasicScenario() {
+		
+		//call method on binarySearch
+		int actualResult = binarySearch.binarySearch(new int[]{}, 5);
+		//check if the result is the expected (first argument = expected value)
+		assertEquals(3, actualResult);
+	}
+}
+```
