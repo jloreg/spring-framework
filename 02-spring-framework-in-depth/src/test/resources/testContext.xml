@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+	 
+	<!-- Here, we are importing all that is present in the XML configuration file defined in applicationContext.xml. Spring framework will use XML and 
+		Java configuration application context, not one or the other, if not both. Java configuration context on the application classes that contains 
+		Java annotations, and XML configuration on the application classes that uses XML configuration context. All the main application classes that
+		implements Java and XML configuration contexts are present inside base-package="com.imh.spring.basics.springindepth".
+	-->
+
+	<import resource="classpath:applicationContext.xml"/>
+</beans>
