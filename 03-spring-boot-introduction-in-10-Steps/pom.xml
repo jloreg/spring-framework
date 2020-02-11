@@ -19,9 +19,17 @@
 	</properties>
 
 	<dependencies>
+
+		<!-- Comment this dependency if you are going to use the Web application
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+		</dependency> -->
+		
+		<!-- Added Spring Web. Comment this dependency if you are going to use the Standalone application -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>

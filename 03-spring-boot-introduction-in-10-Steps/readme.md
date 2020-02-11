@@ -3,7 +3,7 @@
 - Step 0 : Spring Boot in 10 Steps - Section Introduction
 - Step 1 : Introduction to Spring Boot - Goals and Important Features
 - Step 2 : Developing Spring Applications before Spring Boot
-- Step 3 : Using Spring Initializr to create a Spring Boot Application
+- Step 3 : Using Spring Initializer to create a Spring Boot Application
 - Step 4 : Creating a Simple REST Controller
 - Step 5 : What is Spring Boot Auto Configuration?
 - Step 6 : Spring Boot vs Spring vs Spring MVC
