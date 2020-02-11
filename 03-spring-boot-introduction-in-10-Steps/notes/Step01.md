@@ -23,7 +23,4 @@ Today world moving toward Microservices, instead of developing large monolithic 
    - Metrics and health checks. Spring Boot provides monitoring for your application through something called Spring Boot actuator. For example, you can find out how many times a particular services is called. You can find out how many times a particular service failed, and also you can check whether the application is up and running or not. All these features como built in in.
    - Externalized configuration. Another important feature that Spring Boot provide is externalised configuration. The configuration of applications varies between different enviroments. Your configuration from dev different from your configuration in production. Spring Boot provides these features built in. You can simply create property files matching a simple naming convention and that's it. You're ready with externalised configuration. Spring Boot also provides support for different profiles.
 
-http://localhost:8080/books => Few hardcoded books
-
----
-   
+URL to launch a get request to the REST service application http://localhost:8080/books => return few hardcoded books.   
