@@ -33,13 +33,24 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
-		<!--SpringBoot Starter JPA provides interface for hibernate; JPA defines how ORM applications or ORM frameworks should do --> 
+		<!--SpringBoot Starter JPA provides interface for hibernate; JPA defines how ORM applications or ORM frameworks should do 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>-->
+		
+		<!--SpringBoot Starter Actuator provides monitoring for all the services loaded in the project application -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-
-
+		
+		<!--SpringBoot Starter data-rest-hal Browser provides a browser to see the data which is provided by the actuator -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-browser</artifactId>
+		</dependency>
+		
 		<!-- SpringBoot Starter Test enables you to write unite test and integration test as well -->  
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
