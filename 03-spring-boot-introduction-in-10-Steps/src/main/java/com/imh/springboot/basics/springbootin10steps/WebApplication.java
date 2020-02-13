@@ -11,11 +11,12 @@ public class WebApplication {
 	public static void main(String[] args) {
 		
 		ApplicationContext applicationContext = SpringApplication.run(WebApplication.class, args);
-		
+
+		/*
 		//Loop around the applicationContext and prints the name of all the beans which are configured
 		for (String name: applicationContext.getBeanDefinitionNames()) {
 			System.out.println(name);
-		}
+		}*/
 	}
 
 }

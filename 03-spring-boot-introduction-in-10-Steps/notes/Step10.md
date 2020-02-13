@@ -1,3 +1,27 @@
+##Step 10 - Spring Boot Developer Tools
+
+In this step, let's look one of the most productive features to make changes when the application is up and running. How can I get the whole thing to be loaded automatically as soon as I make a code change ?
+
+That's when Spring Boot developer tools come in. It's an awesome dependency that allows any Java changes that you make would be automatically pick up.
+
+##### pom.xml
+
+```xml
+	<!-- SpringBoot devtools for developers -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-devtools</artifactId>
+	</dependency>
+```
+
+One of the things that Spring Boot dev tools very effectively, is it knows that everything in Maven dependencies will not change at all. So it will not load things which are dependent on these again. It will only load those bean which are the application beans again. And that's the reason why you see that it only takes a few seconds to run again.
+If you are maintaining any kind of application that's a big productivity boost.
+
+## Complete Code Example
+
+##### pom.xml
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -70,6 +94,7 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 		
+		
 	</dependencies>
 
 	<build>
@@ -82,3 +107,4 @@
 	</build>
 
 </project>
+```
