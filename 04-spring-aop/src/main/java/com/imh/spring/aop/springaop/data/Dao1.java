@@ -1,4 +1,4 @@
-package com.imh.spring.aop.springaop;
+package com.imh.spring.aop.springaop.data;
 
 import org.springframework.stereotype.Repository;
 

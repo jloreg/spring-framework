@@ -1,21 +1,23 @@
-package com.imh.spring.aop.springaop;
+package com.imh.spring.aop.springaop.business;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.imh.spring.aop.springaop.data.Dao2;
+
 @Service	//@Service	is for Business layer
-public class Business1 {
+public class Business2 {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	private Dao1 dao1;
+	private Dao2 dao2;
 
 	public String calculateSomething(){
 		//Business Logic
-		String value = dao1.retrieveSomething();
+		String value = dao2.retrieveSomething();
 		logger.info("In Business - {}", value);
 		return value;
 	}
