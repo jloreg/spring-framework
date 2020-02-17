@@ -14,11 +14,11 @@ public class UserAccessAspect {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	//What kind of method calls I would intercept
-	//execution(* PACKAGE.*.*(..)) --> darkspace + the name of the package.*.* + (..)
-	
-	@Before("execution(* com.imh.spring.aop.springaop.business.*.*(..))")	//
+	//execution(* PACKAGE.*.*(..)) --> the type of return to be processed + darkspace + the name of the package + the name of the class .* + the name of the method .* + the argument of the method (..) 
+	//Weaving & Weaver
+	@Before("execution(* com.imh.spring.aop.springaop..*.*(..))")	//Pointcut
 	public void before(JoinPoint joinPoint){
-		
+		//Advice
 		//#1 - Implement the check for user access here. 
 		logger.info(" Check for user access ");
 		//#2 - What to do if everything is successful ?
