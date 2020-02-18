@@ -16,7 +16,9 @@ public class UserAccessAspect {
 	//What kind of method calls I would intercept
 	//execution(* PACKAGE.*.*(..)) --> the type of return to be processed + darkspace + the name of the package + the name of the class .* + the name of the method .* + the argument of the method (..) 
 	//Weaving & Weaver
-	@Before("execution(* com.imh.spring.aop.springaop..*.*(..))")	//Pointcut
+	
+//	@Before("execution(* com.imh.spring.aop.springaop..*.*(..))")								//Pointcut: old version
+	@Before("com.imh.spring.aop.springaop.aspect.CommonJoinPointConfig.dataLayerExecution()")	//Pointcut: efficient version
 	public void before(JoinPoint joinPoint){
 		//Advice
 		//#1 - Implement the check for user access here. 
