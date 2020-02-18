@@ -19,7 +19,7 @@ public class AfterAccessAspect {
 	
 	@AfterReturning(value = "execution(* com.imh.spring.aop.springaop.business.*.*(..))",	//Pointcut which needs to be used to intercept
 			returning = "result")	
-	public void afterReturning (JoinPoint joinPoint, String result){	//take the result and put it into this argument name "result"
+	public void afterReturning (JoinPoint joinPoint, Object result){	//take the result and put it into this argument name "result"
 		logger.info("{} returned with value {}", joinPoint, result);	//Print the interceptive calls
 	}
 	

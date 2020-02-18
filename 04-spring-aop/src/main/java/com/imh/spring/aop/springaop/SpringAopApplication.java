@@ -22,7 +22,12 @@ public class SpringAopApplication implements CommandLineRunner{
 	private Business2 business2;
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringAopApplication.class, args);
+		try {
+			SpringApplication.run(SpringAopApplication.class, args);
+		}
+		catch (Exception e) {
+			e.toString();
+		}
 	}
 
 	@Override
