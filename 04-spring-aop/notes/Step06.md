@@ -1,12 +1,12 @@
 ## Step 06 - Using @Around advice to implement performance tracing
 
-In the previous step we looked @Before and @After annotations to do the intersections. In this step, we look at something called an @Around advice, which is used to do more advanced stuff with Aspected Oriented Programming (AOP).
+In the previous step we looked @Before and @After annotations to do the intersections. In this step, we will look at something called an @Around advice, which is used to do more advanced stuff with Aspect Oriented Programming (AOP).
 
-What we would want to do here is, we would want to be able to use an annotation called @Around advice to find the timing, and know how much time is a method execution taking. Once you have the around advice, I can define the pointcut to track the business executions. You don't have a result, because we would use something called *ProceedingJoinPoint*; this would allow you to continue with the exception of the method. So I would intercept it, I would allow the method to proceed, and then find the time taken, so what I want to do to find out the method execution time in here is I'll say:
+What we would want to do here is, we would want to be able to use an annotation called @Around advice to find the timing, and know how much time is a method execution taking. Once you have the @Around advice annotation, I can define the pointcut *execution(# com.imh.spring.aop.springaop.business.#.#(..))* to track the business executions. You don't have a result as parameter, because we would use something called *ProceedingJoinPoint*; this would allow you to continue with the execution of the method. So I would intercept it, I would allow the method to proceed, and then find the time taken, so what I would to find out the method execution time in here is I'll say:
 
 ```java
 @Around("execution(*com.imh.spring.aop.springaop.business.*.*(..))")	//Pointcut which needs to be used to intercept
-public void afterReturning (ProceedingJoinPoint joinPoint){
+public void around (ProceedingJoinPoint joinPoint){
 	logger.info("{} returned with value {}", joinPoint);	//Print the interceptive calls
 	//startTime = x
 	//allow execution of method
@@ -14,7 +14,7 @@ public void afterReturning (ProceedingJoinPoint joinPoint){
 }
 ```
 
-The way I can ask the method to continue execution is by saying joinPoint.proceed();. So the method would execute now, this would throw an exception. I can actually  surround with the 
+The way I can ask the method to continue execution is by saying *joinPoint.proceed();*. So the method that we would execute now, this would throw an exception.
 
 ```java
 @Around("execution(* com.imh.spring.aop.springaop.business.*.*(..))")	//Pointcut which needs to be used to intercept
@@ -27,23 +27,24 @@ public void around(ProceedingJoinPoint joinPoint) throws Throwable{
 }
 ```
 
-Let's quickly look at what we are doing. So we are using the pointcut to intercepting business methods using around advice so that we can intercept the call of a method and execute it. And then after the execution, do something, so before the execution I can do something, after the execution I can do something. So this is much more flexible than the @Before and @After advices because here I can actually do something arounD the invocation, so before the invocation I'm doing something, I continue the execution, and after the execution I'm doing something.
+Let's quickly look at what we are doing. So we are using the pointcut to intercepting business methods, and we are using @Around advice so that we can intercept the call of a method and execute it, and then after the execution, do something (see #3). So before the execution I can do something (#1), after the execution I can do something else (see #3), so this is much more flexible than the @Before and @After advices, because here *public void around* I can actually do something @Around the invocation, so before the invocation I'm doing something, I continue the execution, and after the execution I'm doing something.
 
 ```java
 @Around("execution(* com.imh.spring.aop.springaop.business.*.*(..))")	//Pointcut which needs to be used to intercept
 public void around(ProceedingJoinPoint joinPoint) throws Throwable{
 	
-	//Before the invocation: startTime = x
+	//#1: Before the invocation: startTime = x
 	long startTime = System.currentTimeMillis();
 	
-	//I continue the execution: allow execution of method
+	//#2: I continue the execution: allow execution of method
 	joinPoint.proceed();
 	
-	//After the invocation: end Time = y 
+	//#3: After the invocation: end Time = y 
 	long timeTaken = System.currentTimeMillis() - startTime;
 	logger.info("Time taken by {} is {}", joinPoint, timeTaken);
 }
 ```
+
 Let's run the application and see how much time takes it.
 
 ```
@@ -70,9 +71,9 @@ Console output:
 [2m2020-02-18 08:20:37.382[0;39m [32m INFO[0;39m [35m7422[0;39m [2m---[0;39m [2m[  restartedMain][0;39m [36msAspect$$EnhancerBySpringCGLIB$$3e8baaf4[0;39m [2m:[0;39m execution(String com.imh.spring.aop.springaop.business.Business2.calculateSomething()) returned with value null
 [2m2020-02-18 08:20:37.382[0;39m [32m INFO[0;39m [35m7422[0;39m [2m---[0;39m [2m[  restartedMain][0;39m [36mlication$$EnhancerBySpringCGLIB$$cf3cb6d[0;39m [2m:[0;39m null
 ```
-So all that stuff is now being printed out, so you can find out how much time a method is taking to execute. So here you can expand the aspect, so if you want to also track data then you can just see execution(* com.imh.spring.aop.springaop..*.*(..)), and it would track all the things which are executed inside this thing *com.imh.spring.aop.springaop..*.**. You can play it around on the pointcut and try and understand this specific thing much more.
+So all that stuff is now being printed out, so you can find out how much time a method is taking to execute. So here *execution(# com.imh.spring.aop.springaop.business.#.#(..))* you can expand the aspect, so if you want to also track data, then you can just say *execution(# com.imh.spring.aop.springaop..#.#(..))*, and it would track all the things which are executed inside this thing *com.imh.spring.aop.springaop..*.**. You can play it around on the Pointcuts and try and understand this specific thing much more.
 
-In this step we looked @Around advice, we looked at intercepting a method allowing to proceed doing something before if and after it. This is much more powerful advice than all the other stuff which we looked at. So this would end the different kinds of aspect that are present with Spring Aop and AspectJ in general. So, the things that we looked are @Before, @After, @AfterReturning, @Afterhrowing, and around these are the different kinds of advices which are presentin any typical AOP framework.
+In this step we looked @Around advice, we looked at intercepting a method allowing to proceed, doing something before if and after it. This is much more powerful advice than all the other stuff which we looked at. So this would end the different kinds of aspects that are present with Spring Aop and AspectJ in general. So, the things that we looked are @Before, @After, @AfterReturning, @Afterhrowing, and around these are the different kinds of advices which are present in any typical AOP framework.
 
 ## Complete Code Example
 

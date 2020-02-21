@@ -9,3 +9,5 @@
 - Step 07 - Best Practice : Use common Pointcut Configuration
 - Step 08 - Quick summary of other Pointcuts
 - Step 09 - Creating Custom Annotation and an Aspect for Tracking Time
+
+Some useful resources. https://github.com/eugenp/tutorials/tree/master/spring-aop

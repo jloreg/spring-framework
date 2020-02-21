@@ -1,6 +1,6 @@
 ## Step 07 - Best Practice : Use common Pointcut Configuration
 
-In the previous step we defined @Before and @After around advice. We saw that we had to repeat the pointcut got multiple number of times, due to that the execution of this com.imh.spring.aop.springaop.business.*.* is present here in MethodExecutionCalculationAspect, and in other places as UserAccessAspect and AfterAopAspect as well too. 
+In the previous step we defined @Before and @After around advices. We saw that we had to repeat the Pointcuts multiple number of times present here in MethodExecutionCalculationAspect (see #1 - com.imh.spring.aop.springaop.business.*.*), and in other places as UserAccessAspect and AfterAopAspect as well too. 
 
 ```java
 @Aspect			//AOP
@@ -8,7 +8,8 @@ In the previous step we defined @Before and @After around advice. We saw that we
 public class MethodExecutionCalculationAspect {
 		
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
+					//#1	
 	@Around("execution(* com.imh.spring.aop.springaop.business.*.*(..))")	//Pointcut which needs to be used to intercept
 	public void around(ProceedingJoinPoint joinPoint) throws Throwable{
 		
@@ -25,7 +26,7 @@ public class MethodExecutionCalculationAspect {
 }
 ```
 
-Imagine a big project where these kind of pointcuts that repeat again and again, we don't really. What to do ? in this step we are going to look at best practices related to AOP which is to have a separate file where you define all the pointcuts. So ho do we do that ? that's what we would look at in this specific step.
+Imagine a big project where these kind of Pointcuts repeat again and again, we don't really want to do that. In this step we are going to look at best practices related to AOP which is to have a separate file where you define all the Pointcuts. So how do we do that ? that's what we would look at in this specific step.
 
 ```java
 package com.imh.spring.aop.springaop.aspect;
@@ -49,10 +50,9 @@ public class CommonJoinPointConfig {
 }
 ```
 
-What I did right now is we created a class called CommonJoinPointConfig where I created a data layer execution pointcut. So it says execution of the data layer. So any executionin the data layer, you try and intercept.
+What I did right now is we created a class called CommonJoinPointConfig where I created a data layer execution Pointcut. So it says execution of the *dataLayerExecution()*, so any executionin the data layer, you try and intercept.
 
-1:50
-I'll do a copy qualified name of *dataLayerExecution()* and save this inside the UserAccessAspect.class instead of using this pointcut @Before("execution(* com.imh.spring.aop.springaop..*.*(..))"), I'll use this *@Around("com.in28minutes.spring.aop.springaop.aspect.CommonJoinPointConfig.trackTimeAnnotation()")*. So I'm giving the path to this method, where the pointcut is defined. So you would want to check if the user acces is checked on data layer, so let's run this and see if works as usual.
+I'll do a copy of the qualified name of *dataLayerExecution()* method, and save this inside the UserAccessAspect.class. So instead of using this pointcut @Before("execution(* com.imh.spring.aop.springaop..*.*(..))"), I'll use this *@Around("com.imh.spring.aop.springaop.aspect.CommonJoinPointConfig.dataLayerExecution()")*. So I'm giving the path to this method *dataLayerExecution()*, where the Pointcut it is defined. So you would want to check if the user acces is checked on data layer, so let's run this and see if works as usual.
 
 ```java
 package com.imh.spring.aop.springaop.aspect;
@@ -75,11 +75,9 @@ public class UserAccessAspect {
 }
 ```
 
-02:21
+Now I can reuse these great thing "com.imh.spring.aop.springaop.aspect.CommonJoinPointConfig.dataLayerExecution()" defined in UserAccesAspect and use it everywhere. So now I can use wherever I'm using data layer at execution, and replace it with this *"com.imh.spring.aop.springaop.aspect.CommonJoinPointConfig.dataLayerExecution()"*. 
 
-Now I can reuse these great thing "com.imh.spring.aop.springaop.aspect.CommonJoinPointConfig.dataLayerExecution()" defined in UserAccesAspect and use it everywhere. So now I can use wherever I'm using data at execution, I can replace it with this *"com.imh.spring.aop.springaop.aspect.CommonJoinPointConfig.dataLayerExecution()"*. 
-
-So now what I would do is I would define an aspect, a common aspect for the business layer execution as well, and replace it wherever I'm using business at execution.
+So now what I would do is define a common aspect for the data layer, and a common aspect for the business layer execution as well, and replace it wherever I'm using business at execution.
 
 ```java
 package com.imh.spring.aop.springaop.aspect;
@@ -97,14 +95,17 @@ public class CommonJoinPointConfig {
 	
 	@Pointcut("execution(* com.imh.spring.aop.springaop.business.*.*(..))")
 	public void businessLayerExecution() {};
-}
+}	
 ```
 
-03:20
-So all the pointcuts for your data layer and business layer, and any other ideas you have must be placed in here in the CommonJoinPointConfig class. You can define them in this common file. And that would help yohu in keeping all the pointcuts at a single place.
+I replace it wherever I'm using business at execution: UserAccessAspect and AfterAccessAspect classes.
 
-03:42
-So now if you did, you would see that not everything would execute properly without any exception at all. This executed fine.
+```java
+//	@Around("execution(* com.imh.spring.aop.springaop.business.*.*(..))")							//Pointcut: old version
+	@Around("com.imh.spring.aop.springaop.aspect.CommonJoinPointConfig.businessLayerExecution()")	//Pointcut: efficient version
+```
+
+So all the pointcuts for data layer, business layer, and any other layers or ideas you have in here, must be placed in here in the CommonJoinPointConfig class. You can define them in this common file. And that would help you in keeping all the pointcuts at a single place. Now if you executes the application, you would see that not everything would execute properly, but without any exception at all.
 
 ```java
 020-02-18 11:44:23.429[0;39m [32m INFO[0;39m [35m5656[0;39m [2m---[0;39m [2m[  restartedMain][0;39m [36mc.i.s.a.springaop.SpringAopApplication  [0;39m [2m:[0;39m Started SpringAopApplication in 0.727 seconds (JVM running for 1.348)
@@ -124,7 +125,7 @@ So now if you did, you would see that not everything would execute properly with
 [2m2020-02-18 11:44:23.448[0;39m [32m INFO[0;39m [35m5656[0;39m [2m---[0;39m [2m[  restartedMain][0;39m [36mication$$EnhancerBySpringCGLIB$$1a7dc89b[0;39m [2m:[0;39m null
 ```
 
-We looked at one of the best AOP practices, and they all have a coomon file CommonJoinPointConfig class for having all your pointcuts.
+In this step, we looked at one of the best practices in AOP, all have a common file CommonJoinPointConfig class for having all your Pointcuts definitions.
 
 ## Complete Code Example
 
@@ -172,7 +173,7 @@ public class UserAccessAspect {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	//What kind of method calls I would intercept
-	//execution(* PACKAGE.*.*(..)) --> the type of return to be processed + darkspace + the name of the package + the name of the class .* + the name of the method .* + the argument of the method (..) 
+	//execution(* PACKAGE.*.*(..)) --> the type of return to be processed + dark space + the name of the package + the name of the class .* + the name of the method .* + the argument of the method (..) 
 	//Weaving & Weaver
 	
 //	@Before("execution(* com.imh.spring.aop.springaop..*.*(..))")								//Pointcut: old version
