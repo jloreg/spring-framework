@@ -9,6 +9,11 @@ public class Person {
 	private String location;
 	private Date birthDate;
 	
+	public Person() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Person(int id, String name, String location, Date birthDate) {
 		super();
 		this.id = id;
