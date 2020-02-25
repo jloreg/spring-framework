@@ -26,6 +26,8 @@ public class SpringDatabaseApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		logger.info("All users -> {}", dao.findAll());
 		logger.info("User id 10001 -> {}", dao.findById(10001));
+		logger.info("Deleting 10002 -> No of Rows Deleted - {}", 
+				dao.deleteById(10002));
 	}
 
 }
