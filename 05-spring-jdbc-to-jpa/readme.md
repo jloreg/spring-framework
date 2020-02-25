@@ -7,8 +7,8 @@
 - Step 04 - Populate data into Person Table
 - Step 05 - Implement findAll persons Spring JDBC Query Method
 - Step 06 - Execute the findAll method using CommandLineRunner
-- Step 07 - A Quick Review - JDBC vs Spring JDBC
-- Step 08 - Whats in the background? Understanding Spring Boot Autoconfiguration
+- Step 07 - A Quick Review - JDBC VS Spring JDBC
+- Step 08 - What's in the background? Understanding Spring Boot Autoconfiguration
 - Step 09 - Implementing findById Spring JDBC Query Method
 - Step 10 - Implementing deleteById Spring JDBC Update Method
 - Step 11 - Implementing insert and update Spring JDBC Update Methods
