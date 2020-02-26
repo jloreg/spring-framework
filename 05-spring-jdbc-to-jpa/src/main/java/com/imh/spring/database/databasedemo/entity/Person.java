@@ -1,6 +1,6 @@
 package com.imh.spring.database.databasedemo.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Person {
 
