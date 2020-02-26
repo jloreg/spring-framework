@@ -18,10 +18,24 @@ public class PersonJdbcDao {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	
+	class PersonRowMapper implements RowMapper<Person>{
+		@Override
+		public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Person person = new Person();
+			person.setId(rs.getInt("id"));
+			person.setName(rs.getString("name"));
+			person.setLocation(rs.getString("location"));
+			person.setBirthDate(rs.getTimestamp("birth_date"));
+			return person;
+		}
+		
+	}
 
 	public List<Person> findAll() {
 		return jdbcTemplate.query("select * from person", 
-				new BeanPropertyRowMapper(Person.class));
+//				new BeanPropertyRowMapper(Person.class));
+				new PersonRowMapper());
 	}
 	
 	public Person findById(int id) {
