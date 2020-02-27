@@ -1,7 +1,5 @@
 package com.imh.spring.database.databasedemo;
 
-import java.util.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,38 +7,39 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.imh.spring.database.databasedemo.entity.Person;
-import com.imh.spring.database.databasedemo.jdbc.PersonJdbcDao;
+import com.imh.spring.database.databasedemo.jpa.PersonJpaRepository;
 
 @SpringBootApplication
-public class SpringDatabaseApplication implements CommandLineRunner {
+public class SpringJpaApplication implements CommandLineRunner {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	PersonJdbcDao dao;
+	PersonJpaRepository repository;
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringDatabaseApplication.class, args);
+		SpringApplication.run(SpringJpaApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+				
+		logger.info("User id 10001 -> {}", repository.findById(10001));
 		
-		logger.info("All users -> {}", dao.findAll());
-		
-		logger.info("User id 10001 -> {}", dao.findById(10001));
+		/*When the next methods are implemented, uncomment this
+		logger.info("All users -> {}", repository.findAll());
 		
 		logger.info("Deleting 10002 -> No of Rows Deleted - {}", 
-				dao.deleteById(10002));
+				repository.deleteById(10002));
 		
 		logger.info("Inserting 10004 -> {}", 
-				dao.insert(new Person(10004, "Tara", "Berlin", new Date())));
+				repository.insert(new Person(10004, "Tara", "Berlin", new Date())));
 		
 		logger.info("Update 10003 -> {}", 
-				dao.update(new Person(10003, "Pieter", "Utrecht", new Date())));
+				repository.update(new Person(10003, "Pieter", "Utrecht", new Date())));
 		
-		logger.info("All users -> {}", dao.findAll());
+		logger.info("All users -> {}", repository.findAll());
+		*/
 	}
 
 }
