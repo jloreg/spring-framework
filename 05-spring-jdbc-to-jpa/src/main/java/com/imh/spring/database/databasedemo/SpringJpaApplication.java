@@ -37,9 +37,8 @@ public class SpringJpaApplication implements CommandLineRunner {
 		
 		repository.deleteById(10002);
 		
-		/*When the next methods are implemented, uncomment this
-		logger.info("All users -> {}", repository.findAll());
-		*/
+//		logger.info("All users -> {}", repository.findAll());	//Original
+		logger.info("All users -> {}", repository.findAll().toString());	//Improved
 	}
 
 }
