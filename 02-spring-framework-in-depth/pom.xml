@@ -70,7 +70,9 @@
 			<version>1</version>
 		</dependency>
 		
-<!-- To be able to run the Spring main applications (package com.imh.spring.basics.springindepth), you must comment these lines:
+<!-- To be able to run the Spring main applications (package com.imh.spring.basics.springindepth), you must comment the lines below. 
+	 CAUTION: if you comment these lines, Spring Boot main application (package com.imh.spring.basics.springindepth.boot), can't be able to run.
+	 
 		<dependency>
 	        <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-starter-test</artifactId>

@@ -41,6 +41,18 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- Added dependencies for AspectJ and Spring AOP -->		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

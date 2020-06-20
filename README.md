@@ -7,18 +7,19 @@
 - You will learn the basics of Spring Boot, Spring AOP, Spring JDBC and JPA
 - You will develop a basic Web application step by step using JSP Servlets and Spring MVC
 - You will learn to write unit tests with XML, Java Application Contexts and Mockito
-    
-##Spring Framework in 10 Steps
+  
+
+## Spring Framework in 10 Steps
 - 0000 - 01 - Section Introduction - Spring in 10 Steps
-- Step 1 - Setting up a Spring Project using htttp://start.spring.io
-- Step 2 - Understanding Tight Coupling using the Binary Search Algorithm Example
-- Step 3 - Making the Binary Search Algorithm Example Loosely Coupled
-- Step 4 - Using Spring to Manage Dependencies - @Component, @Autowired
-- Step 5 - What is happening in the background?
-- Step 6 - Dynamic auto wiring and Troubleshooting - @Primary
-- Step 7 - Constructor and Setter Injection
-- Step 8 - Spring Modules
-- Step 9 - Spring Projects
+- Step 01 - Setting up a Spring Project using htttp://start.spring.io
+- Step 02 - Understanding Tight Coupling using the Binary Search Algorithm Example
+- Step 03 - Making the Binary Search Algorithm Example Loosely Coupled
+- Step 04 - Using Spring to Manage Dependencies - @Component, @Autowired
+- Step 05 - What is happening in the background?
+- Step 06 - Dynamic auto wiring and Troubleshooting - @Primary
+- Step 07 - Constructor and Setter Injection
+- Step 08 - Spring Modules
+- Step 09 - Spring Projects
 - Step 10 - Why is Spring Popular?
 
 ## Spring in Depth
@@ -70,16 +71,16 @@
 
 ## Spring Boot in 10 Steps
 - 0000 - 05 - Section Introduction - Spring Boot in 10 Steps
-- Step 0 : Spring Boot in 10 Steps - Section Introduction
-- Step 1 : Introduction to Spring Boot - Goals and Important Features
-- Step 2 : Developing Spring Applications before Spring Boot
-- Step 3 : Using Spring Initializr to create a Spring Boot Application
-- Step 4 : Creating a Simple REST Controller
-- Step 5 : What is Spring Boot Auto Configuration?
-- Step 6 : Spring Boot vs Spring vs Spring MVC
-- Step 7 : Spring Boot Starter Projects - Starter Web and Starter JPA
-- Step 8 : Overview of different Spring Boot Starter Projects
-- Step 9 : Spring Boot Actuator
+- Step 00 : Spring Boot in 10 Steps - Section Introduction
+- Step 01 : Introduction to Spring Boot - Goals and Important Features
+- Step 02 : Developing Spring Applications before Spring Boot
+- Step 03 : Using Spring Initializr to create a Spring Boot Application
+- Step 04 : Creating a Simple REST Controller
+- Step 05 : What is Spring Boot Auto Configuration?
+- Step 06 : Spring Boot vs Spring vs Spring MVC
+- Step 07 : Spring Boot Starter Projects - Starter Web and Starter JPA
+- Step 08 : Overview of different Spring Boot Starter Projects
+- Step 09 : Spring Boot Actuator
 - Step 10 : Spring Boot Developer Tools
 
 ## Spring AOP
